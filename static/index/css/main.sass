@@ -1,0 +1,741 @@
+@import "normalise"
+@import "slick"
+@import "animate"
+
+@font-face
+  font-family: 'English'
+  src: url('../fonts/English1766-ThinWEB.woff') format('woff'),url('../fonts/English1766-ThinWEB.woff2') format('truetype')
+  font-weight: 100
+  font-style: normal
+
+@font-face
+  font-family: 'Grot'
+  src: url('../fonts/Grot10_RegularWEB.woff') format('woff'),url('../fonts/Grot10_RegularWEB.woff2') format('truetype')
+  font-weight: 300
+  font-style: normal
+
+//colors
+$main: #1D1D1B
+$text: #1D1D1B
+$sage: #273D2D
+$lowry: #004F9E
+$regent: #F5A623
+
+*
+  box-sizing: border-box
+body
+  font-family: 'English', Georgia
+  font-weight: 100
+  color: $text
+  // letter-spacing: .5px
+  background: white
+a
+  text-decoration: none
+  color: inherit
+p
+  color: $text
+
+  font-size: 16px
+  line-height: 24px
+  margin: 0 0 1.5em
+  font-weight: 400
+  &:last-child
+    margin-bottom: 0
+  &.big
+    font-size: 32px
+    line-height: 44px
+    letter-spacing: .5px
+    margin: 0
+  &.medium
+    font-size: 24px
+    line-height: 34px
+    letter-spacing: .5px
+    margin: 0
+  &.indent
+    text-indent: 4em
+  &.caption
+    margin-top: 5px
+    font-size: 14px
+    line-height: 19px
+h1, h3, h4, h5, h6
+  font-family: 'Grot', Helvetica, sans-serif
+  font-weight: 400
+  margin: 0
+  padding: 0
+
+h1
+  font-weight: 400
+  font-size: 100px
+
+h2
+  font-size: 26px
+  line-height: 34px
+  letter-spacing: 1px
+  font-weight: 400
+  margin-top: 0
+h3
+  font-size: 20px
+  line-height: 24px
+  letter-spacing: 1px
+  font-weight: 400
+
+h4
+  font-size: 16px
+  line-height: 18px
+
+  letter-spacing: 1px
+  font-weight: 300
+  margin: 0
+  margin-bottom: .25em
+  padding: 0
+  text-transform: uppercase
+h5
+  font-size: 15px
+  // margin: 0 0 10px
+  font-weight: 100
+  line-height: 16px
+  letter-spacing: .8px
+h6
+  letter-spacing: .8px
+  a
+    text-decoration: underline
+header.header
+  background: white
+  position: fixed
+  width: 100%
+  left: 0
+  top: 0
+  right: 0
+  z-index: 99999
+  height: 90px
+  box-shadow: 0 0px 9px rgba(0,0,0,0.3)
+article.main
+  margin: 70px 144px 0 auto
+  // padding: 1em
+.menu
+  height: 90px
+  padding: 0 2em
+
+.big-logo, .small-logo
+  opacity: 0
+  transition: .3s all ease-out
+  position: relative
+.small-logo
+  top: 15px
+  display: block
+  &.logo-active
+    opacity: 1
+    top: 0
+    top: -11px
+
+
+.big-logo
+  top: -15px
+  &.logo-active
+    opacity: 1
+    top: 16px
+
+
+.mb
+  margin-bottom: 1rem
+.mb--big
+  margin-bottom: 2rem
+.mb--huge
+  margin-bottom: 6rem
+.all-caps
+  text-transform: uppercase
+
+$tab-width: 780px
+$tab-header: 48px
+
+.tilt
+  opacity: 0
+  transition: 1s opacity
+
+.tab-container
+  &.sage--active
+    .tab--sage
+      right: $tab-header * 2
+    .tab--lowry
+      right: -1 * ($tab-width - ($tab-header * 2))
+    .tab--regent
+      right: -1 * ($tab-width - ($tab-header * 1))
+  &.lowry--active
+    .tab--sage
+      right: $tab-header * 2
+    .tab--lowry
+      right: $tab-header * 1
+    .tab--regent
+      right: -1 * ($tab-width - ($tab-header * 1))
+  &.regent--active
+    .tab--sage
+      right: $tab-header * 2
+    .tab--lowry
+      right: $tab-header * 1
+    .tab--regent
+      right: 0
+.tab
+  position: fixed
+  width: $tab-width
+  top: 90px
+  bottom: 0
+  right: 0
+  color: white
+
+  transition: .4s all ease-out
+  cursor: pointer
+  header:hover
+    margin-right: 4px
+  h5
+    color: white
+    line-height: $tab-header
+    padding-left: $tab-header / 2
+
+  article
+    position: absolute
+    left: $tab-header
+    width: calc(100% - $tab-header)
+    top: 0
+    bottom: 0
+    right: 0
+    padding: 0em 1em 1em
+    margin-top: 4em
+    overflow: auto
+  .tab-image
+    margin: 0 0 2em
+    img
+      width: 100%
+      float: none
+.tab--sage
+  background: $sage
+  right: -1 * ($tab-width - ($tab-header * 3))
+  z-index: 1
+  header
+    background: $sage
+  p
+    color: white
+.tab--lowry
+  background: $lowry
+  right: -1 * ($tab-width - ($tab-header * 2))
+  z-index: 2
+  header
+    background: $lowry
+  p
+    color: white
+.tab--regent
+  background: $regent
+  right: -1 * ($tab-width - ($tab-header * 1))
+  z-index: 3
+  header
+    background: $regent
+  color: $main !important
+  h5
+    color: $main
+
+.tab--header
+  width: 410px
+  transform: rotate(90deg)
+  position: absolute
+  top: 0
+  left: 0
+  margin-top: 183px
+  margin-left: -184px
+  &.tab--header-second
+    margin-top: 610px
+
+.tab-container .tab:hover
+  margin-right: 3px
+
+.tab-container.sage--active .tab:hover , .tab-container.lowry--active .tab:hover, .tab-container.regent--active .tab:hover
+  margin-right: 0
+
+
+.close-tab
+  position: fixed
+  right: 21px
+  z-index: 34
+  top: 109px
+  font-size: 12px
+  text-transform: uppercase
+  letter-spacing: 1px
+  opacity: 0
+  background: white
+  padding: 4px 8px
+
+  transition: .4s all
+  svg
+    top: 1px
+    position: relative
+.sage--active
+  .close-tab
+    opacity: 1
+    right: 21px + 96px
+.lowry--active
+  .close-tab
+    opacity: 1
+    right: 21px + 48px
+.regent--active
+  .close-tab
+    opacity: 1
+    right: 21px
+.flip
+  transform: rotate(90deg)
+
+
+
+.button, button[type="submit"], input[type="submit"]
+  display: inline-block
+  font-size: 16px
+  border: 1px $main solid
+  background: $main
+  padding: 1em 2em
+  text-align: center
+  color: white
+  text-decoration: none
+  transition: .7s all
+  cursor: pointer
+  font-family: 'Grot'
+  &.filled
+    background: $main
+    color: white
+    border: none
+  &.small
+    padding: .75em 1.5em
+  &:hover
+    background: rgba(0,0,0,.7)
+.full-width
+  display: block
+  width: 100%
+
+.container
+  max-width: 1400px
+  padding: 1.5em
+  margin: 0 auto
+  width: 100%
+  &.container--small
+    max-width: 800px
+.cf:before,.cf:after
+  content: " "
+  display: table
+.cf:after
+  clear: both
+.cf
+  *zoom: 1
+  &.container--full
+    padding: 0
+    max-width: none
+
+
+
+.fll
+  float: left
+.flr
+  float: right
+.ta-right
+  text-align: right
+.ta-center
+  text-align: center
+.serif
+  font-family: 'English', Georgia
+.normal
+
+  .col
+    float: left
+    margin-right: 4%
+    &.last
+      margin-right: 0
+    &:last-of-type
+      margin-right: 0
+  .one
+    width: 20%
+  .two
+    width: 36%
+  .three
+    width: 60%
+
+.flex
+  display: flex
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  flex-wrap: wrap
+  justify-content: start
+  img
+    width: 100%
+  .one
+    flex: 1
+    -webkit-flex: 1
+    -ms-flex: 1
+    -webkit-box-flex: 1
+    -moz-box-flex: 1
+    // margin-right: 2%
+    justify-content: space-around
+    &:last-of-type
+      margin-right: 0
+    &.marginal
+      margin-right: 4%
+      &:last-of-type
+        margin-right: 0
+  .two
+    flex: 2
+    -webkit-flex: 2
+    -ms-flex: 2
+    -webkit-box-flex: 2
+    -moz-box-flex: 2
+    // max-width: 350px
+  .three
+    flex: 3
+    -webkit-flex: 3
+    -ms-flex: 3
+    -webkit-box-flex: 3
+    -moz-box-flex: 3
+    img
+      max-width: 100%
+  &.flex-middle
+    align-items: center
+.menu-item
+  text-align: center
+  font-size: 18px
+  img
+    margin-bottom: 10px
+.social
+  font-size: 20px
+
+  &.space-group-small
+    margin-bottom: .25em
+h6.space-group-small
+  margin-bottom: .25em
+
+.relative
+  position: relative
+
+.carousel
+  img
+    margin-right: 2em
+    padding-right: 1.5em
+.carousel-buttons
+  position: absolute
+  right: 12.5%
+  top: 50%
+  transform: translateY(-50%)
+  z-index: 1
+  cursor: pointer
+
+
+label
+  display: block
+  margin-bottom: 1em
+input, textarea
+  padding: 14px
+  display: block
+  // width: 100%
+  border: 1px #ccc solid
+  // margin-bottom: 1em
+  font-size: 20px
+  font-family: 'English', Helvetica, sans-serif
+
+.www
+  background: url(../images/www.png)
+  height: 9px
+  width: 100%
+  margin: 4em 0 2em
+.www-white
+  background: url(../images/www-white.png)
+  height: 9px
+  width: 100%
+  margin: 4em 0 2em
+
+
+.block-center
+  display: block
+  margin: 0 auto
+  text-align: center
+
+.six.center
+  width: 50%
+  margin: 0 auto
+.quotes
+  margin: 2em 0
+  &:first-of-type
+    margin-top: 4em
+.space-group
+  margin-bottom: 2em
+
+.space-group-small
+  margin-bottom: 1em
+.compress
+  margin-bottom: .5em
+.f-left
+  float: left
+.m-r
+  margin-right: .5em
+
+
+.mobile-menu
+  display: none
+.tab img
+  float: right
+.menu-pop-up
+  display: none
+
+
+$h1height: 100px
+$h1adjust: 80px
+
+h1
+  line-height: 105px
+  width: auto
+  font-size: 140px
+.animation
+  overflow: hidden
+  height: calc(77vh - 90px)
+  min-height: 570px
+  // background: aliceblue
+  h1
+    position: absolute
+    &:nth-of-type(1)
+      top: $h1adjust + $h1height
+    &:nth-of-type(2)
+      top: $h1adjust + $h1height * 2
+    &:nth-of-type(3)
+      top: $h1adjust + $h1height * 3
+    &:nth-of-type(4)
+      top: $h1adjust + $h1height * 4
+    &:nth-of-type(5)
+      top: $h1adjust + $h1height * 5
+
+@media (max-width: 970px)
+  .email h2
+    font-size: 20px
+    line-height: 24px
+@media (max-width: 769px)
+  body
+    overflow-x: hidden
+  $h1height: 100px
+  $h1adjust: 80px
+
+
+  .animation
+    height: calc(67vh - 90px)
+    min-height: 500px
+    h1
+      position: absolute
+      width: 100%
+      // background: rgba(0,0,0,.1)
+      height: 100px
+      font-size: 130px
+      line-height: 40px
+      &:nth-of-type(1)
+        top: $h1height + $h1adjust - 40px
+        margin-left: 0px
+      &:nth-of-type(2)
+        top: $h1adjust + $h1height * 2
+      &:nth-of-type(3)
+        top: $h1adjust + $h1height * 3
+        // margin-left: 400px
+      &:nth-of-type(4)
+        top: $h1adjust + $h1height * 4
+        // right: 0
+      &:nth-of-type(5)
+        top: $h1adjust + $h1height * 5
+  .menu-pop-up
+    display: block
+    position: fixed
+    left: 0
+    right: 0
+    top: -400px
+    z-index: 3
+    background: white
+    transition: .4s all
+    border-bottom: 1px solid #ddd
+    &.active
+      top: 89px
+  .mobile-menu
+    display: block
+
+  h2
+    font-size: 20px
+    line-height: 24px
+  h3
+    font-size: 16px
+    line-height: 22px
+  h4
+    font-size: 14px
+    line-height: 16px
+  article.main
+    margin-right: 0
+  .tab
+    width: 100%
+    right: 0
+    left: 0
+    top: 100%
+    article
+      left: 0
+    h5
+      padding-left: 0
+      float: none
+      margin-right: 10px
+      font-size: 11.5px
+      &:nth-of-type(2)
+        margin-top: -30px
+    .tab--header
+      width: auto
+      transform: none
+      position: relative
+      top: auto
+      left: auto
+      margin-top: 0
+      margin-left: 20px
+  p.big, p.medium
+    font-size: 18px
+    line-height: 24px
+
+  .sage--active .close-tab, .lowry--active .close-tab, .regent--active .close-tab
+    right: 27px
+    top: 70px
+  .tab-container
+
+    &.sage--active
+      .close-tab
+        display: block
+        // right: 90px
+      .tab--sage
+        top: 90px
+      .tab--lowry, .tab--regent
+        top: 100%
+
+    &.lowry--active
+      .close-tab
+        display: block
+        // right: 48px
+      .tab--sage, .tab--regent
+        top: 100%
+      .tab--lowry
+        top: 90px
+    &.regent--active
+      .close-tab
+        display: block
+        // right: 48px
+      .tab--regent
+        top: 90px
+      .tab--lowry, .tab--sage
+        top: 100%
+
+
+@media (max-width: 735px)
+  .animation
+    h1:nth-of-type(1)
+      top: $h1height + $h1adjust - 40px
+      margin-left: 0px
+@media (max-width: 500px)
+  $h1height: 65px
+  $h1adjust: 60px
+  .animation
+    height: calc(57vh - 70px)
+    overflow: hidden
+    min-height: 320px
+    h1
+      font-size: 70px
+      line-height: 10px
+      &:nth-of-type(1)
+        top: $h1height + $h1adjust
+        // margin-left: 400px
+      &:nth-of-type(2)
+        top: $h1adjust + $h1height * 2
+        // margin-left: 10px
+        // margin-top: 10px
+      &:nth-of-type(3)
+        top: $h1adjust + $h1height * 3
+        margin-left: -30px
+        // margin-top: 10px
+      &:nth-of-type(4)
+        top: $h1adjust + $h1height * 4
+        // right: 0
+        // margin-top: 10px
+      &:nth-of-type(5)
+        top: $h1adjust + $h1height * 5
+        // margin-top: 10px
+@media (max-width: 600px)
+
+  .flex
+    display: block
+    &.preserve
+      display: -webkit-flex
+      display: -ms-flex
+      display: flex
+      .one, .two
+        margin-bottom: 0
+
+    .one, .two, .three
+      margin-bottom: 1.5em
+  .normal .col
+    display: block
+    width: 100%
+    margin-bottom: 1em
+    margin-right: 0
+  .tab-header h5
+    font-size: 13px
+  p.big
+    font-size: 20px
+    line-height: 26px
+  .hide-mobile
+    display: none
+  .menu
+    svg
+      max-width: 220px
+    .small-logo svg
+      width: 50px
+    padding: 0 1em
+    height: 70px
+  header.header
+    height: 70px
+  .menu-pop-up
+    &.active
+      top: 69px
+  .menu-item.marginal.one
+    margin-right: 3%
+  .menu-item
+    font-size: 14px
+    line-height: 19px
+    img
+      margin-bottom: 5px
+  .tab-container
+    &.sage--active
+      .tab--sage
+        top: 70px
+      .tab--lowry, .tab--regent
+        top: 100%
+
+    &.lowry--active
+      .tab--sage, .tab--regent
+        top: 100%
+      .tab--lowry
+        top: 70px
+    &.regent--active
+      .tab--regent
+        top: 70px
+      .tab--lowry, .tab--sage
+        top: 100%
+  .tab img
+    float: none
+  .six.center
+    width: 80%
+  .slick-list
+    padding: 0 15% 0 0
+  .carousel-buttons
+    right: 0
+  .next svg
+    width: 40px
+
+
+
+
+@media (max-width: 500px)
+  h3
+    font-size: 15px
+    line-height: 20px
+.cc-window.cc-floating
+  padding: 1.2em !important
+  // background: yellow
+  font-size: .8em !important
+  border: 1px solid lightgray
